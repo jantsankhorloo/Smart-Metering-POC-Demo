@@ -75,14 +75,12 @@ val1 = 0
 val2 = 0
 
 print 'INITIATING JANTSANKHORLOO SMART METERING DEMO...'
-photon1 = requests.get(
-    'https://api.particle.io/v1/devices/280028000447343337373737/analogvalue?access_token=3a5959cd38066fa161dc7f733083d1cbe6366c66')
+photon1 = requests.get('') #1st photon access token goes here
 
 number_result1 = map(int, (re.findall('\d+', photon1.content)))
 val1 = number_result1[0]
 
-photon2 = requests.get(
-    'https://api.particle.io/v1/devices/27002e000447343337373738/analogvalue?access_token=3a5959cd38066fa161dc7f733083d1cbe6366c66')
+photon2 = requests.get('') #2nd photon access token goes here
 
 print 'Load completed'
 number_result2 = map(int, (re.findall('\d+', photon2.content)))
@@ -96,8 +94,7 @@ def photon1Req():
     global val1
     while True:
 
-        photon1 = requests.get(
-            'https://api.particle.io/v1/devices/280028000447343337373737/analogvalue?access_token=3a5959cd38066fa161dc7f733083d1cbe6366c66')
+        photon1 = requests.get('') # 1st photon access token
         number_result1 = map(int, (re.findall('\d+', photon1.content)))
         val1 = number_result1[0]
 
@@ -110,7 +107,7 @@ def photon1Req():
 def photon2Req():
     global val2
     while True:
-        photon2 = requests.get('https://api.particle.io/v1/devices/27002e000447343337373738/analogvalue?access_token=3a5959cd38066fa161dc7f733083d1cbe6366c66')
+        photon2 = requests.get('') #2nd photon access token goes between the strings
         number_result2 = map(int, (re.findall('\d+', photon2.content)))
         val2 = number_result2[0]
 
