@@ -1,21 +1,18 @@
 import numpy as np
 import matplotlib
-import sys
-
-matplotlib.use('TKAgg')
-
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
+matplotlib.use('TKAgg')
+import sys
 import random
 import requests, thread, threading, time, timeit
 import re
-
 import csv
 from collections import defaultdict
 
 columns = defaultdict(list) # each value in each column is appended to a list
 #FOR JUNE 9
-with open('data.csv', 'rb') as f:
+with open('data.csv', 'rb') as f:# extracting columns from csv
     reader = csv.DictReader(f) # read rows into a dictionary format
     for row in reader: # read a row as {column1: value1, column2: value2,...}
         for (k,v) in row.items(): # go over each column name and value
@@ -33,7 +30,7 @@ for each in listofIndex:
 
 #####=====================
 columns1 = defaultdict(list)
-with open('data1.csv', 'rb') as file:
+with open('data1.csv', 'rb') as file: # extracting columns from csv
     reader1 = csv.DictReader(file) # read rows into a dictionary format
     for row in reader1: # read a row as {column1: value1, column2: value2,...}
         for (k,v) in row.items(): # go over each column name and value 
@@ -49,7 +46,6 @@ for each in listofIndex1:
 #####=====================
 
 nydata = iter(testload)
-
 
 fig = plt.figure("Smart Meter POC- Jantsan")
 ax1 = fig.add_subplot(1, 1, 1)
@@ -89,18 +85,15 @@ val2 = number_result2[0]
 print number_result1[0]
 print number_result2[0]
 
-
 def photon1Req():
     global val1
     while True:
-
         photon1 = requests.get('') # 1st photon access token
         number_result1 = map(int, (re.findall('\d+', photon1.content)))
         val1 = number_result1[0]
 
         print 'Photon 1:', val1  # Photon1
         #d time.sleep(1)
-
     return #d number_result1[0]
 
 
@@ -113,9 +106,7 @@ def photon2Req():
 
         print 'Photon 2:', val2
         #d time.sleep(1)
-
     return
-
 
 def animate(i):
     temp = float(next(nydata)) - 2000
@@ -142,14 +133,12 @@ def main():
     netThread2.start()
     ani = animation.FuncAnimation(fig, animate, interval=500)
     plt.show()
-
     try:
         while True:
             pass
     except (KeyboardInterrupt, SystemExit):
         sys.exit()
         print 'KeyboardInterrtup caught'
-
 
 if __name__=='__main__':
     main()
