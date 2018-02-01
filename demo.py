@@ -27,7 +27,6 @@ listofIndex = [i for i, x in enumerate(name) if x == "N.Y.C."]
 for each in listofIndex:
     testload.append(load[each])
 
-
 #####=====================
 columns1 = defaultdict(list)
 with open('data1.csv', 'rb') as file: # extracting columns from csv
@@ -96,7 +95,6 @@ def photon1Req():
         #d time.sleep(1)
     return #d number_result1[0]
 
-
 def photon2Req():
     global val2
     while True:
@@ -122,9 +120,7 @@ def animate(i):
     ax1.plot(x, data1, color='blue', linewidth=2.0, label='SM#1')
     ax1.plot(x, data2, color='cyan', linewidth=2.0, label='SM#2')
     ax1.plot(x, data3, color='green', linewidth=2.0, label='NYC LOAD')
-
     return
-
 
 def main():
     netThread1 = threading.Thread(target = photon1Req)
